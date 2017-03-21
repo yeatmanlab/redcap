@@ -1,0 +1,26 @@
+Dear {ename},<br>
+<br>
+We appreciate your continued interest in the UW Reading & Dyslexia Research Program. Please use the link <a href="{link}">here</a> to access a series of surveys and questionnaires. Each form is designed to be completed in only a few minutes.<br>
+<br>
+You can use this link to return to this list at any time and complete surveys at your leisure. The information provided will help us determine {your} eligibility for current and future studies, as well as help us design future experiments and interventions.<br>
+<br>
+All questions are optional and you can choose not to provide any information that you do not feel comfortable sharing. If you have any questions, please respond to this email or call the lab at 206-685-9365.<br>
+<br>
+Please note that you will need to provide {your} date of birth to access these surveys.<br>
+<br>
+Thank you for your time!<br>
+Douglas Strodtman<br>
+<br>
+-- <br>
+Douglas Strodtman<br>
+Research Assistant<br>
+<a href="http://depts.washington.edu/bdelab">Brain Development & Education Lab</a><br>
+<a href="http://ilabs.washington.edu/">Institute for Learning & Brain Sciences (I-LABS)</a><br>
+<br>
+1715 Columbia Rd. N<br>
+Portage Bay Building, #210<br>
+University of Washington<br>
+Seattle, WA, 98195<br>
+<br>
+(p): 206-685-9365<br>
+(w): brainlab@uw.edu<br>
