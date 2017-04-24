@@ -43,7 +43,7 @@ reg = pd.DataFrame(scr, columns=['child' , 'adult' ,
 'verify_scr_complete' , 'gc_previous_data' , 'gc_future_data' ,
 'gc_data_sharing_init' , 'gc_future_contact' , 'gc_family' ,
 'gc_sub_agree' , 'gc_sub_sig' , 'gc_parent_agree' , 'gc_parent_sig' ,
-'gc_date' , 'gc_lab' , 'gc_lab_date' , 'subject_id' ,
+'gc_date' , 'gc_lab' , 'gc_lab_date' , 'subject_id' , 'past_sub' , 'recruiting_status' , 
 'general_consent_complete' , 'co_open' , 'co_datetime' , 'co_who' ,
 'co_mode' , 'co_speak' , 'co_message' , 'co_email' , 'co_prefer' ,
 'co_notes' , 'contact_complete' , 'email_name', 'redcap_event_name', 'sid'])
