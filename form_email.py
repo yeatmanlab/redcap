@@ -170,7 +170,7 @@ for sub in no_email.index:
 # Write out updated repository file to upload who has received email
 if repo_col:
     repo_data.to_csv(home+'/Downloads/repo_email.csv')
-    sys.stdout.write('\nPlease import repo_email.csv to Repository')
+    sys.stdout.write('\nPlease import repo_email.csv to Repository\n')
         
 # delete the files from which we're working for security!
 os.remove(reg_file)
