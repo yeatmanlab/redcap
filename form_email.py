@@ -5,12 +5,7 @@
 # repository into contact info from registry.
  
 # This script assumes that all subjects that have been exported from the
-# registry need to receive the message that you are sending.
-
-# Currently, repo_data is not being utilized for anything. Can be used
-# to identify subjects that need to receive email. Or could change the
-# target file that's being opened here and define these criteria in
-# another script.
+# repository need to receive the message that you are sending. Subs that are missing data in registry (whether just missing email or no record at all) will indicated as not receiving messages through command line feedback.
 
 # import necessary modules
 import smtplib
@@ -45,6 +40,9 @@ reg_data['link'] = link_data.link
 # And for survey
 reg_data['survey'] = link_data.survey
 
+# Use the repo_data to select which individuals will receive emails
+subs = pd.DataFrame(reg_data.ix[repo_data.index])
+
 # Check to make sure we are sending surveys
 # Script is set up to take any text formatted according to rules published on wiki
 if input('Would you like to send out the survey queue? y/n ') == 'y':
@@ -74,6 +72,12 @@ else:
 lab_name = input('Please enter the name to be used in the signature: ')
 lab_role = input('Please enter the title of this individual: ')
 
+# Let user indicate which column to use to mark success of email being sent
+if input('Would you like to mark a column in the repository that surveys have been sent? y/n ') == 'y':
+    for column in repo_data.columns:
+        sys.stdout.write(column+'\n')
+    repo_col = input('Please type the name of the column you wish you mark: ')    
+
 # Set all features not to be iterated
 # Originating email
 rdrp_email = "rdrp@uw.edu"
@@ -96,13 +100,13 @@ server.login(rdrp_email, input('Please enter password for rdrp@uw.edu: '))
 
 # Scrape subject data from info, input into form.format in the same order as the positions
 # to be filled in.
-for sub in reg_data.index:
-    if pd.isnull(reg_data.parent_first_name[sub]):
-        ename = reg_data.first_name[sub]
-        link = reg_data.link[sub]
+for sub in subs.index[pd.notnull(subs['email'])]: #excludes subs without email address defined
+    if pd.isnull(subs.parent_first_name[sub]):
+        ename = subs.first_name[sub]
+        link = subs.link[sub]
         your = 'your'
-        body = form.format(ename=ename, link=link, your=your, survey=reg_data.survey[sub], lab_name=lab_name, lab_role=lab_role)
-        sub_email = reg_data.email[sub]
+        body = form.format(ename=ename, link=link, your=your, survey=subs.survey[sub], lab_name=lab_name, lab_role=lab_role)
+        sub_email = subs.email[sub]
         # Create message container - the correct MIME type is multipart/alternative.
         msg = MIMEMultipart()
         msg['Subject'] = subl
@@ -118,12 +122,19 @@ for sub in reg_data.index:
         # sendmail function takes 3 arguments: sender's address, recipient's address
         # and message to send - here it is sent as one string.
         server.sendmail(rdrp_email, sub_email, msg.as_string())
+        
+        # Mark that email has been sent (if told earlier)
+        if repo_col:
+            repo_data.loc[repo_data.index==[sub],repo_col]='1'
+        
+        # update on status
+        sys.stdout.write('Email sent to {}\n'.format(repo_data.sid.ix[sub]))
     else:
-        ename = reg_data.parent_first_name[sub]
-        link = reg_data.link[sub]
-        your = reg_data.first_name[sub] + "'s"
-        body = form.format(ename=ename, link=link, your=your, survey=reg_data.survey[sub],  lab_name=lab_name, lab_role=lab_role)
-        sub_email = reg_data.email[sub]
+        ename = subs.parent_first_name[sub]
+        link = subs.link[sub]
+        your = subs.first_name[sub] + "'s"
+        body = form.format(ename=ename, link=link, your=your, survey=subs.survey[sub],  lab_name=lab_name, lab_role=lab_role)
+        sub_email = subs.email[sub]
         # Create message container - the correct MIME type is multipart/alternative.
         msg = MIMEMultipart()
         msg['Subject'] = subl
@@ -139,11 +150,29 @@ for sub in reg_data.index:
         # sendmail function takes 3 arguments: sender's address, recipient's address
         # and message to send - here it is sent as one string.
         server.sendmail(rdrp_email, sub_email, msg.as_string())
+        
+        # Mark that email has been sent (if told earlier)
+        if repo_col:
+            repo_data.loc[repo_data.index==[sub],repo_col]='1'
+        
+        # update on status
+        sys.stdout.write('Email sent to {}\n'.format(repo_data.sid.ix[sub]))
 
-#close server
+# close server
 server.quit()
 
-#close server
-server.quit()	
-# updated = pd.concat([data.redcap_event_name, data.survey_sent], axis=1)
-# updated.to_csv('~/Downloads/survey_sent.csv')
+# Write out all subjects that have missing email data in reg
+no_email = repo_data[pd.isnull(subs['email'])]
+sys.stdout.write('\nNo email in reg for subjects:\n')
+for sub in no_email.index:
+    sys.stdout.write('{}\n'.format(no_email.sid[sub]))
+
+# Write out updated repository file to upload who has received email
+if repo_col:
+    repo_data.to_csv(home+'/Downloads/repo_email.csv')
+    sys.stdout.write('\nPlease import repo_email.csv to Repository')
+        
+# delete the files from which we're working for security!
+os.remove(reg_file)
+os.remove(repo_file)
+os.remove(link_file)
