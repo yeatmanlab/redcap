@@ -9,11 +9,11 @@ All questions are optional and you can choose not to provide any information tha
 Please note that you will need to provide {your} date of birth to access these surveys.<br>
 <br>
 Thank you for your time!<br>
-Douglas Strodtman<br>
+{lab_name}<br>
 <br>
 -- <br>
-Douglas Strodtman<br>
-Research Assistant<br>
+{lab_name}<br>
+{lab_role}<br>
 <a href="http://depts.washington.edu/bdelab">Brain Development & Education Lab</a><br>
 <a href="http://ilabs.washington.edu/">Institute for Learning & Brain Sciences (I-LABS)</a><br>
 <br>
