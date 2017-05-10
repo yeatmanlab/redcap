@@ -1,0 +1,28 @@
+Dear {ename},<br>
+<br>
+Greetings from Dr. Yeatman's Brain Development & Education Lab! I would like to again express our gratitude for your previous participation in our research.<br>
+<br>
+We have recently expanded our studies on dyslexia into the University of Washington Reading & Dyslexia Research Program (RDRP). We would love to include {your} results in our  database and obtain your consent to contact you regarding future opportunities associated with this program.<br>
+<br>
+We would greatly appreciate if you would be willing to take 3 minutes to fill out the registration located <a href="https://redcap.iths.org/surveys/?s=DF3TRAJH3C">here</a>. If you have other family members or friends that might like to also participate, you can share this link with them.<br>
+<br>
+If you have any questions, please respond to this email or call the lab at 206-685-9365.<br>
+<br>
+If you no longer wish to be contacted by our lab, please click <a href="{unsubscribe}">here</a> to unsubscribe.
+<br>
+Thank you for your time!<br>
+{lab_name}<br>
+<br>
+-- <br>
+{lab_name}<br>
+{lab_role}<br>
+<a href="http://depts.washington.edu/bdelab">Brain Development & Education Lab</a><br>
+<a href="http://ilabs.washington.edu/">Institute for Learning & Brain Sciences (I-LABS)</a><br>
+<br>
+1715 Columbia Rd. N<br>
+Portage Bay Building, #210<br>
+University of Washington<br>
+Seattle, WA, 98195<br>
+<br>
+(p): 206-685-9365<br>
+(w): rdrp@uw.edu<br>
