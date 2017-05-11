@@ -18,6 +18,9 @@ file = max(glob.iglob(home+'/Downloads/RDRPScreeningDatabas_DATA_*'), key=os.pat
 # load screening data using the record_id as the index
 scr = pd.read_csv(file, index_col='record_id', dtype=object)
 
+# Create and mark column nlr_reg for later import into Repo
+scr.nlr_reg = '1'
+
 # Before changing record_id, set xfer values to complete
 xfer = scr
 xfer.reg_xfer=1
@@ -106,7 +109,7 @@ repo = pd.DataFrame(fixed_id, columns=['child' , 'adult' ,
 'dys_treat' , 'reading_rate' , 'adhd_dx' , 'ld_dx' , 'ld_treat' ,
 'vision_dis' , 'brain_injury' , 'brain_injury_des' , 'brain_injury_cons'
 , 'psych_dx' , 'meds' , 'scr_metal' , 'scr_mri' , 'screening_complete' ,
-'scr_verified' , 'subject_id', 'redcap_event_name', 'sid', 'sid_email'])
+'scr_verified' , 'subject_id', 'redcap_event_name', 'sid', 'sid_email', 'nlr_reg'])
 
 # write out csv files
 reg.to_csv(home+'/Downloads/reg_nlr.csv')
