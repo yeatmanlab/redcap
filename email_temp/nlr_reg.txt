@@ -8,7 +8,7 @@ We would greatly appreciate if you would be willing to take 3 minutes to fill ou
 <br>
 If you have any questions, please respond to this email or call the lab at 206-685-9365.<br>
 <br>
-If you no longer wish to be contacted by our lab, please click <a href="{unsubscribe}">here</a> to unsubscribe.
+If you no longer wish to be contacted by our lab, please click <a href="{unsubscribe}">here</a> to unsubscribe.<br>
 <br>
 Thank you for your time!<br>
 {lab_name}<br>

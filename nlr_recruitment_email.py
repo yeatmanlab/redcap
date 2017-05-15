@@ -118,20 +118,23 @@ s = sched.scheduler(time.time, time.sleep)
 s.enterabs(start_time, 1, time.time, ())
 s.run()
 
-# Start server and query for password
-server = smtplib.SMTP('smtp.gmail.com', 587)
-server.starttls()
-server.login(from_email, pswd)
+
 
 # Scrape subject data from info, input into form.format in the same order as the positions
 # to be filled in.
 for sub in sub_data.index: # We have already dropped subs that don't need to be contacted
-    time.sleep(1) # add 1 second pause between emails
+    time.sleep(60) # add 60 second pause between emails
     if pd.isnull(sub_data.parent_first_name[sub]):
         ename = sub_data.first_name[sub]
         your = 'your'
         body = form.format(ename=ename, your=your, unsubscribe=sub_data.unsubscribe[sub], lab_name=lab_name, lab_role=lab_role)
         sub_email = sub_data.email[sub]
+        
+        # Start server
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(from_email, pswd)
+        
         # Create message container - the correct MIME type is multipart/alternative.
         msg = MIMEMultipart()
         msg['Subject'] = subl
@@ -154,11 +157,23 @@ for sub in sub_data.index: # We have already dropped subs that don't need to be 
         # update on status
         sys.stdout.write('Email sent to {} {}\n'.format(sub_data.first_name[sub], sub_data.last_name[sub]))
         
+        # close server
+        server.quit()
+        
+        # Write out updated repo_data csv each time in case script crashes
+        repo_data.to_csv(home+'/Downloads/repo_nlr_reg.csv')
+        
     else:
         ename = sub_data.parent_first_name[sub]
         your = sub_data.first_name[sub] + "'s"
         body = form.format(ename=ename, your=your, unsubscribe=sub_data.unsubscribe[sub], lab_name=lab_name, lab_role=lab_role)
         sub_email = sub_data.email[sub]
+        
+        # Start server
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(from_email, pswd)        
+        
         # Create message container - the correct MIME type is multipart/alternative.
         msg = MIMEMultipart()
         msg['Subject'] = subl
@@ -181,11 +196,13 @@ for sub in sub_data.index: # We have already dropped subs that don't need to be 
         # update on status
         sys.stdout.write('Email sent to {} {}\n'.format(sub_data.first_name[sub], sub_data.last_name[sub]))
 
-# close server
-server.quit()
+        # close server
+        server.quit()
+        
+        # Write out updated repo_data csv each time in case script crashes
+        repo_data.to_csv(home+'/Downloads/repo_nlr_reg.csv')
 
-# Write out updated repository file to upload who has received email
-repo_data.to_csv(home+'/Downloads/repo_nlr_reg.csv')
+# Write out reminder to upload updated repository file
 sys.stdout.write('\nPlease import repo_nlr_reg.csv to Repository\n')
 
 # delete the files from which we're working for security!

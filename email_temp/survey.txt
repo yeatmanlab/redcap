@@ -8,6 +8,8 @@ All questions are optional and you can choose not to provide any information tha
 <br>
 Please note that you will need to provide {your} date of birth to access these surveys.<br>
 <br>
+If you no longer wish to be contacted by our lab, please click <a href="{unsubscribe}">here</a> to unsubscribe.<br>
+<br>
 Thank you for your time!<br>
 {lab_name}<br>
 <br>
