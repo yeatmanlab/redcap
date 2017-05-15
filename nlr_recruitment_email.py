@@ -118,8 +118,6 @@ s = sched.scheduler(time.time, time.sleep)
 s.enterabs(start_time, 1, time.time, ())
 s.run()
 
-
-
 # Scrape subject data from info, input into form.format in the same order as the positions
 # to be filled in.
 for sub in sub_data.index: # We have already dropped subs that don't need to be contacted
