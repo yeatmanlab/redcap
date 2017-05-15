@@ -18,9 +18,6 @@ file = max(glob.iglob(home+'/Downloads/RDRPScreeningDatabas_DATA_*'), key=os.pat
 # load screening data using the record_id as the index
 scr = pd.read_csv(file, index_col='record_id', dtype=object)
 
-# Create and mark column nlr_reg for later import into Repo
-scr.nlr_reg = '1'
-
 # Before changing record_id, set xfer values to complete
 xfer = scr
 xfer.reg_xfer=1
@@ -36,6 +33,9 @@ id_key = pd.read_csv(home+'/git/redcap/id_key.csv', dtype=object)
 # Seed DataFrame for indexing
 fixed_id=pd.DataFrame(columns=id_key.columns)
 fixed_id.set_index('record_id', inplace=True)
+
+# Create and mark column nlr_reg for later import into Repo
+fixed_id.nlr_reg = '1'
 
 # Index through subs and change record_id to match up to those with associated nlr_id
 for sub in scr.index:
