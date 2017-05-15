@@ -57,7 +57,7 @@ form = form.read()
 sys.stdout.write("NLR registration script loaded\n")
 
 # Set subject line
- subl = 'Please register for our new database, the UW Reading & Dyslexia Research Program!'
+subl = 'Please register for our new database, the UW Reading & Dyslexia Research Program!'
 
 # Set record_id as index for both sub and reg data (both are dtype object for comparison and floating concerns) & repo_data 
 sub_data.set_index('record_id', inplace=True)
