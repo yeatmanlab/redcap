@@ -67,6 +67,19 @@ repo_data.set_index('record_id', inplace=True)
 # Now that all are indexed by record_id, we can add other fields...
 sub_data['unsubscribe']=link_data.unsubscribe
 
+# Query if we want to exclude based based on nlr_email_date (mainly for crashing script)
+if input('Do you want to exclude subjects based on nlr_email_date? y/n ') == 'y':
+    ex_date = input('\nWhat date would you like to exclude? YYYY-MM-DD ')
+    sys.stdout.write('\nThe following subjects have been excluded:\n')
+else: 
+    ex_date = None
+
+# Print out who's being excluded    
+if ex_date:
+    for sub in repo_data.index[repo_data.nlr_email_date==ex_date]:
+        sys.stdout.write('{} {}\n'.format(sub_data.first_name[sub], sub_data.last_name[sub]))
+    sub_data.drop(repo_data.index[repo_data.nlr_email_date==ex_date], inplace = True)
+
 # Set the identity of the individual sending the email
 lab_name = 'Patrick Donnelly'
 lab_role = 'Graduate Research Assistant'
