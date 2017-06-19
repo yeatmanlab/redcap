@@ -19,6 +19,7 @@ repo = pd.read_csv(repo_file, index_col='record_id', dtype=object)
 # import time and get current time
 #from time import gmtime, localtime
 #now = strftime("%Y-%m-%d %H:%M", localtime())
+from datetime import datetime
 now = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
 # find all subs with upcoming appointments
