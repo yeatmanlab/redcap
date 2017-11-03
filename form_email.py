@@ -100,10 +100,10 @@ body = """<html>
 pswd = input('Please enter password for {}: '.format(from_email))
 
 # Write out all subjects that have missing email data in reg
-no_email = repo_data[pd.isnull(subs['email'])]
-sys.stdout.write('\nNo email in reg for subjects:\n')
-for sub in no_email.index:
-    sys.stdout.write('{}\n'.format(no_email.sid[sub]))
+#no_email = repo_data[pd.isnull(subs['email'])]
+#sys.stdout.write('\nNo email in reg for subjects:\n')
+#for sub in no_email.index:
+#    sys.stdout.write('{}\n'.format(no_email.sid[sub]))
 
 # set the start time as 11pm today, print this out to the command line
 start_time_str = time.strftime('%d %b %y', time.localtime()) +' 23:00'
@@ -127,7 +127,7 @@ for sub in subs.index[pd.notnull(subs['email'])]: #excludes subs without email a
         ename = subs.first_name[sub]
         link = subs.link[sub]
         your = 'your'
-        body = form.format(ename=ename, link=link, your=your, unsubscribe=subs.unsubscribe[sub], lab_name=lab_name, lab_role=lab_role)
+        body = form.format(ename=ename, link=link, your=your, unsubscribe=subs.survey[sub], lab_name=lab_name, lab_role=lab_role)
         sub_email = subs.email[sub]
         
         # Start server
@@ -166,7 +166,7 @@ for sub in subs.index[pd.notnull(subs['email'])]: #excludes subs without email a
         ename = subs.parent_first_name[sub]
         link = subs.link[sub]
         your = subs.first_name[sub] + "'s"
-        body = form.format(ename=ename, link=link, your=your, unsubscribe=subs.unsubscribe[sub], lab_name=lab_name, lab_role=lab_role)
+        body = form.format(ename=ename, link=link, your=your, unsubscribe=subs.survey[sub], lab_name=lab_name, lab_role=lab_role)
         sub_email = subs.email[sub]
         
         # Start server
