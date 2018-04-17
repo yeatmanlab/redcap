@@ -36,7 +36,7 @@ def apidelete_records(record, token, redcap_path, buf):
     ch.setopt(ch.HTTPPOST, data)
     ch.setopt(ch.WRITEFUNCTION, buf.write)
     ch.perform()
-    print('deleted',records[record])
+    print('deleted',record)
 
 
     return;
