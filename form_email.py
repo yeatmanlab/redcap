@@ -36,11 +36,8 @@ repo_data = pd.read_csv(repo_file, index_col='record_id')
 link_data = pd.read_csv(link_file, skiprows=1, header=None, names=['dummy', 'na', 
     'record_id', 'd', 'e', 'f', 'survey', 'link'], index_col='record_id', dtype=object) # headers in the file are poorly written. na, d, e, f are all not used 
 	
-# Extract links for survey queues
-reg_data['link'] = link_data.link
-
-# And for survey
-reg_data['survey'] = link_data.survey
+# Extract links for survey queues via innerjoin
+reg_data = reg_data.join(link_data)
 
 # Use the repo_data to select which individuals will receive emails
 subs = pd.DataFrame(reg_data.ix[repo_data.index])
