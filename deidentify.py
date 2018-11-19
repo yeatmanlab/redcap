@@ -7,7 +7,7 @@ import glob
 home = os.path.expanduser('~')
 
 # find the most recent data file exported from the screening database and set it as the file
-file = max(glob.iglob(home+'/Downloads/RDRPScreeningDatabas_DATA_*'), key=os.path.getctime)
+file = max(glob.iglob(home+'/Downloads/RDRPScreeningDatabas-Transfer_DATA_*'), key=os.path.getctime)
 
 # load data using the record_id as the index
 scr = pd.read_csv(file, index_col='record_id', dtype=object)
