@@ -26,8 +26,8 @@ home = os.path.expanduser('~')
 # reg_file should be report XX
 # repo_file should be report XX
 # link_file should be downloaded from XX as according to wiki
-reg_file = max(glob.iglob(home+'/Downloads/RDRPRegistry-Emails_DATA_*'), key=os.path.getctime)
-repo_file = max(glob.iglob(home+'/Downloads/RDRPRepository-SurveyStatus_DATA_*'), key=os.path.getctime)
+reg_file = max(glob.iglob(home+'/Downloads/RDRPRegistry_DATA_*'), key=os.path.getctime)
+repo_file = max(glob.iglob(home+'/Downloads/RDRPRepository_DATA_*'), key=os.path.getctime)
 link_file = max(glob.iglob(home+'/Downloads/RDRPRepository_Participants_*'), key=os.path.getctime)
 
 # Load data from each using record_id as index
@@ -36,8 +36,11 @@ repo_data = pd.read_csv(repo_file, index_col='record_id')
 link_data = pd.read_csv(link_file, skiprows=1, header=None, names=['dummy', 'na', 
     'record_id', 'd', 'e', 'f', 'survey', 'link'], index_col='record_id', dtype=object) # headers in the file are poorly written. na, d, e, f are all not used 
 	
-# Extract links for survey queues via innerjoin
-reg_data = reg_data.join(link_data)
+# Extract links for survey queues
+reg_data['link'] = link_data.link
+
+# And for survey
+reg_data['survey'] = link_data.survey
 
 # Use the repo_data to select which individuals will receive emails
 subs = pd.DataFrame(reg_data.ix[repo_data.index])

@@ -16,7 +16,7 @@ scr = pd.read_csv(file, index_col='record_id', dtype=object)
 scr['redcap_event_name'] = 'subject_intake_arm_1'
 
 # set the sid from the subject_id
-scr['sid']=scr.subject_id
+scr['sid']=scr.subject_id_v2
 
 # remove spaces from sid
 for sub in scr.index:
@@ -40,10 +40,10 @@ reg = pd.DataFrame(scr, columns=['child' , 'adult' ,
 , 'parent2_last_name' , 'parent2_email' , 'parent2_phone' , 'parent3'
 , 'parent3_first_name' , 'parent3_last_name' , 'parent3_email' ,
 'parent3_phone' , 'screening_complete' , 'scr_verified' ,
-'verify_scr_complete' , 'gc_previous_data' , 'gc_future_data' ,
-'gc_data_sharing_init' , 'gc_future_contact' , 'gc_family' ,
-'gc_sub_agree' , 'gc_sub_sig' , 'gc_parent_agree' , 'gc_parent_sig' ,
-'gc_date' , 'gc_lab' , 'gc_lab_date' , 'subject_id' , 'past_sub' , 'recruiting_status' , 'intervention_interest',
+'verify_scr_complete' , 'gc_previous_data_v2' , 'gc_future_data_v2' ,
+'gc_data_sharing_init_v2' , 'gc_future_contact_v2' , 'gc_family_v2' ,
+'gc_sub_agree_v2' , 'gc_sub_sig_v2' , 'gc_parent_agree_v2' , 'gc_parent_sig_v2' ,
+'gc_date_v2' , 'gc_lab_v2' , 'gc_lab_date_v2' , 'subject_id' , 'past_sub' , 'recruiting_status' , 'intervention_interest',
 'general_consent_complete' , 'co_open' , 'co_datetime' , 'co_who' ,
 'co_mode' , 'co_speak' , 'co_message' , 'co_email' , 'co_prefer' ,
 'co_notes' , 'contact_complete' , 'email_name', 'redcap_event_name', 'sid'])
@@ -72,8 +72,9 @@ repo = pd.DataFrame(scr, columns=['child' , 'adult' ,
 'aud_dis_dx___98' , 'aud_dis_other' , 'aud_dis_treat' , 'dys_dx' ,
 'dys_treat' , 'reading_rate' , 'adhd_dx' , 'ld_dx' , 'ld_treat' ,
 'vision_dis' , 'brain_injury' , 'brain_injury_des' , 'brain_injury_cons'
-, 'psych_dx' , 'meds' , 'scr_metal' , 'scr_mri' , 'screening_complete' ,
-'scr_verified' , 'subject_id', 'redcap_event_name', 'sid', 'sid_email'])
+, 'neuro_dx', 'neuro_dx_note', 'psych_dx' , 'meds' , 'scr_metal' , 'scr_mri' 
+, 'screening_complete' , 'scr_verified' , 'subject_id', 'redcap_event_name'
+, 'sid', 'sid_email'])
 
 # set all transfer fields to complete
 scr.reg_xfer=1
