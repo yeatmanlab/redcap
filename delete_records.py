@@ -5,7 +5,7 @@
 # requires: API token from admin member
 
 # import necessary databases and libraries
-import pycurl,json,requests,sys,os
+import json,requests,sys,os, pycurl, certifi
 import pandas as pd
 import numpy as np
 # existing redcap API stipulates StringIO, but pycurl now works with BytesIO
@@ -51,7 +51,7 @@ delete_me = []
 for record in range(0,records.size):
     # function call to apidelete_records in utils folder
     utils.apidelete_records(records[record], token, redcap_path, buf)
-ch.close()
+#ch.close()
 buf.close()
 
 # overwrite API token

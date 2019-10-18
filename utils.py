@@ -16,7 +16,7 @@
 # Output: none
 def apidelete_records(record, token, redcap_path, buf):
     # import databases and modules
-    import pycurl,json,requests,sys,os
+    import pycurl,json,requests,sys,os,certifi
     import pandas as pd
     import numpy as np
     from io import BytesIO
@@ -32,6 +32,7 @@ def apidelete_records(record, token, redcap_path, buf):
 
     # send command to redcap
     ch = pycurl.Curl()
+    ch.setopt(ch.CAINFO, certifi.where())
     ch.setopt(ch.URL, redcap_path)
     ch.setopt(ch.HTTPPOST, data)
     ch.setopt(ch.WRITEFUNCTION, buf.write)
