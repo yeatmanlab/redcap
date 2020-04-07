@@ -10,7 +10,7 @@ import utils
 #where would you like the data to be stored
 #this is initialized to the downloads to prevent storage on github repo
 data_folder = os.path.expanduser('~/Downloads/')
-desktop = os.path.expanduser('~/Desktop/')
+desktop = os.path.expanduser('~/OneDrive/Desktop/')
 
 token1_file = 'repo_apitoken.txt'
 token2_file = 'reg_apitoken.txt'
@@ -38,7 +38,7 @@ pigs_report = {
     'token': token1,
     'content': 'report',
     'format': 'csv',
-    'report_id': '25085',
+    'report_id': '41963',
     'rawOrLabel': 'raw',
     'rawOrLabelHeaders': 'raw',
     'exportCheckboxLabel': 'false',
@@ -72,8 +72,8 @@ emails_filename = os.path.join(data_folder,'pigs_emails.csv')
 with open(emails_filename, 'w') as email_file:
         email_file.write(emails.text)
 
-pigs_repo_data = pd.read_csv(repo_filename)
-email_data = pd.read_csv(emails_filename)
+pigs_repo_data = pd.read_csv(repo_filename, encoding='latin-1')
+email_data = pd.read_csv(emails_filename, encoding='latin-1')
 
 
 combined = pigs_repo_data.set_index('record_id').\

@@ -13,7 +13,7 @@ import glob
 home = os.path.expanduser('~')
 
 # find the most recent data file exported from the screening database and set it as file_scr
-file = max(glob.iglob(home+'/Downloads/RDRPScreeningDatabas_DATA_*'), key=os.path.getctime)
+file = max(glob.iglob(home+'/Downloads/RDRPScreeningDatabas-TransferNLR_DATA_*'), key=os.path.getctime)
 
 # load screening data using the record_id as the index
 scr = pd.read_csv(file, index_col='record_id', dtype=object)
@@ -76,7 +76,7 @@ reg = pd.DataFrame(fixed_id, columns=['child' , 'adult' ,
 , 'parent2_last_name' , 'parent2_email' , 'parent2_phone' , 'parent3'
 , 'parent3_first_name' , 'parent3_last_name' , 'parent3_email' ,
 'parent3_phone' , 'screening_complete' , 'scr_verified' ,
-'verify_scr_complete' , 'gc_previous_data_v2' , 'gc_future_data_v2' , 
+'verify_scr_complete' , 'gc_previous_data_v2' , 'gc_future_data_v2' ,
 'gc_future_contact_v2' , 'gc_family_v2' ,
 'gc_sub_agree_v2' , 'gc_sub_sig_v2' , 'gc_parent_agree_v2' , 'gc_parent_sig_v2' ,
 'gc_date_v2' , 'gc_lab_v2' , 'gc_lab_date_v2' , 'subject_id' , 'past_sub' , 'recruiting_status' , 'intervention_interest',
@@ -108,7 +108,7 @@ repo = pd.DataFrame(fixed_id, columns=['child' , 'adult' ,
 'aud_dis_dx___98' , 'aud_dis_other' , 'aud_dis_treat' , 'dys_dx' ,
 'dys_treat' , 'reading_rate' , 'adhd_dx' , 'ld_dx' , 'ld_treat' ,
 'vision_dis' , 'brain_injury' , 'brain_injury_des' , 'brain_injury_cons'
-, 'neuro_dx', 'neuro_dx_note', 'psych_dx' , 'meds' , 'scr_metal' , 'scr_mri' 
+, 'neuro_dx', 'neuro_dx_note', 'psych_dx' , 'meds' , 'scr_metal' , 'scr_mri'
 , 'screening_complete' , 'scr_verified' , 'subject_id', 'redcap_event_name'
 , 'sid', 'sid_email', 'nlr_reg'])
 
